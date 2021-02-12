@@ -1,4 +1,4 @@
-const { fetchMyIP, fetchCoordsByIP, fetchISSFlyOverTimes, nextISSTimesForMyLocation } = require('./iss_promised');
+const { nextISSTimesForMyLocation } = require('./iss_promised');
 
 const printPassTimes = function(passTimes) {
   for (const pass of passTimes) {
@@ -9,9 +9,6 @@ const printPassTimes = function(passTimes) {
   }
 };
 
-fetchMyIP()
-  .then(fetchCoordsByIP)
-  .then(fetchISSFlyOverTimes)
-  .then(nextISSTimesForMyLocation)
+nextISSTimesForMyLocation()
   .then(data => printPassTimes(data))
-  .catch((err) => console.log('it didn\'t work', err.message));
+  .catch(err => console.log('It didn\'t work!', err));
